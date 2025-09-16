@@ -88,8 +88,13 @@ def clean_flights(flights_df):
     # Make a copy to avoid modifying the original
     df = flights_df.copy()
     
+    df = df.iloc[:, :12]  # Keep only expected number of columns
+
     # TODO: Assign column names to the DataFrame
     df.columns = expected_columns
+
+    # Keep only relevant columns
+    df = df[expected_columns]
     
     # TODO: Remove flights with missing coordinates
     df = df.dropna(subset=['longitude', 'latitude'])

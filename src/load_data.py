@@ -14,8 +14,8 @@ import psycopg2
 # Database connection configuration
 # ⚠️ Remplace ces valeurs par tes vraies infos
 DATABASE_CONFIG = {
-    'username': 'your_username',
-    'password': 'your_password', 
+    'username': 'postgres',
+    'password': 'my_password', 
     'host': 'localhost',
     'port': '5432',
     'database': 'airlife_db'
