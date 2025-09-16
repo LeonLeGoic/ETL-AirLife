@@ -21,17 +21,13 @@ def extract_airports():
     print("📄 Reading airport data from CSV...")
     
     try:
-        # TODO: Read the airports.csv file using pandas
-        # The file is located at: data/airports.csv
-        # Hint: Use pd.read_csv()
-        
-        # For now, return an empty DataFrame
-        df = pd.DataFrame()
-        
-        # TODO: Print how many airports were loaded
-        # Example: print(f"Loaded {len(df)} airports")
-        
-        print("⚠️  Airport extraction not yet implemented")
+        # Lecture du CSV
+        csv_path = os.path.join("data", "airports.csv")
+        df = pd.read_csv(csv_path)
+
+        # Afficher le nombre d'aéroports chargés
+        print(f"✅ Loaded {len(df)} airports")
+
         return df
         
     except Exception as e:
