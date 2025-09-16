@@ -5,7 +5,7 @@ This module handles extracting data from different sources:
 - Airport data from CSV file
 - Live flight data from OpenSky Network API
 """
-
+#coucou c'est moi
 import pandas as pd
 import requests
 import time
@@ -58,23 +58,27 @@ def extract_flights():
         print("Making API request... (this may take a few seconds)")
         
         # TODO: Make the API request using requests.get()
-        # Hint: response = requests.get(url, params=params, timeout=10)
+        response = requests.get(url, params=params, timeout=10)
         
         # TODO: Check if the response is successful
-        # Hint: Check response.status_code == 200
+        if response.status_code != 200:
+            print(f"API returned error code {response.status_code}")
+            return pd.DataFrame()
         
         # TODO: Get the JSON data from the response
-        # Hint: data = response.json()
+        data = response.json()
         
         # TODO: Extract the 'states' data from the JSON
-        # The API returns: {"time": 123456789, "states": [[aircraft_data], [aircraft_data], ...]}
-        # Hint: states = data['states'] if data['states'] else []
+        states = data.get("states", [])
+        if not states:
+            print("No flight data found in this region.")
+            return pd.DataFrame()
         
         # TODO: Convert to DataFrame
-        # Hint: df = pd.DataFrame(states)
+        df = pd.DataFrame(states)
         
         # TODO: Print how many flights were found
-        # Example: print(f"Found {len(df)} active flights")
+        print(f"Found {len(df)} active flights")
         
         # For now, return empty DataFrame
         print("⚠️  Flight extraction not yet implemented")
